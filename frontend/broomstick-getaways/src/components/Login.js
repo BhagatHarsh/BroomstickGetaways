@@ -2,7 +2,7 @@ import React from 'react';
 import { LoginParchment } from './LoginParchment';
 import { FloatingQuills } from './FloatingQuills';
 import { useInput } from '../hooks/useInput';
-import styles from '../styles/Login.module.css'; // Import the CSS file as a module
+import styles from '../styles/Login.module.css';
 
 export const Login = () => {
   const username = useInput('');
@@ -10,18 +10,29 @@ export const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Add login logic here
+
+    if (username.value === 'harry' && password.value === 'potter') {
+      alert('Welcome Harry!');
+    } else {
+      alert('Invalid credentials');
+    }
   };
 
   return (
     <div className={styles.loginContainer}>
-      <h1 className={styles.loginTitle}>Broomstick Getaways</h1>
-      <FloatingQuills />
-      <LoginParchment
-        username={username}
-        password={password}
-        onSubmit={handleSubmit}
-      />
+      <div className={styles.loginBox}>
+        <h1 className={styles.loginTitle}>Broomstick Getaways</h1>
+        <form onSubmit={handleSubmit}>
+          <div className={styles.inputBox}>
+            <input type="text" {...username} placeholder="Username" />
+          </div>  
+          <div className={styles.inputBox}>
+            <input type="password" {...password} placeholder="Password" />
+          </div>       
+          <button type="submit">Login</button>
+        </form>
+      </div>
+      <FloatingQuills /> 
     </div>
   );
 };
