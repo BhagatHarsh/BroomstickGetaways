@@ -1,11 +1,20 @@
+body {
+	background-image: url('background.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100%;
+	
+}
+
 .Nav {
-	background: #63D471;
+	
 	height: 85px;
 	display: flex;
 	justify-content: space-between;
 	padding: 0.2rem calc((100vw - 1000px) / 2);
 	z-index: 12;
-}
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	}
 
 .NavLink {
 	color: #808080;
@@ -38,6 +47,7 @@
 }
 
 .NavMenu {
+	
 	display: flex;
 	align-items: center;
 	margin-right: -24px;
@@ -45,6 +55,7 @@
 
 @media screen and (max-width: 768px) {
 	.NavMenu, .NavBtn {
+		
 		display: none;
 	}
 }
