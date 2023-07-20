@@ -2,15 +2,23 @@ require('dotenv').config(); // For loading environment variables
 
 // Load necessary modules and dependencies
 const express = require('express');
+const path = require('path');
 const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
-const User = require('./models/User');
+const verifyToken = require('./middlewares/verifyJWT');
+
+// Import controllers
+const userController = require('./controllers/userController');
+const packageController = require('./controllers/packageController');
+const bookingController = require('./controllers/bookingController');
+
+// constants
 const PORT = process.env.PORT || 3000;
 
+// Backend server code
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
 
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
@@ -20,63 +28,14 @@ mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopol
         console.error('Error connecting to database', error);
     });
 
-app.post('/register', async (req, res) => {
-    console.log('post register');
-    console.log(req.body);
-    try {
-        const hashedPassword = await bcrypt.hash(req.body.password, 10);
-        const user = new User({
-            username: req.body.username,
-            password: hashedPassword,
-        });
-        const savedUser = await user.save();
-        const expirationTime = Math.floor(Date.now() / 1000) + (60 * 60); // Current time + 1 hour
-        const accessToken = jwt.sign({ username: savedUser.username, exp: expirationTime }, process.env.ACCESS_TOKEN_SECRET);
-        res.json({ accessToken });
-    } catch (error) {
-        res.status(500).send(error);
-    }
-});
+app.post('/register', userController.register);
+app.post('/login', userController.login);
+app.get('/profile', verifyToken, userController.profile);
 
-app.post('/login', async (req, res) => {
-    console.log('post login');
-    try {
-        const user = await User.findOne({ username: req.body.username });
-        if (!user) {
-            return res.status(400).send('Cannot find user');
-        }
-        const passwordMatch = await bcrypt.compare(req.body.password, user.password);
-        if (passwordMatch) {
-            const expirationTime = Math.floor(Date.now() / 1000) + (60 * 60); // Current time + 1 hour
-            const accessToken = jwt.sign({ username: user.username, exp: expirationTime }, process.env.ACCESS_TOKEN_SECRET);
-            res.json({ accessToken });
-        } else {
-            res.send('Not Allowed');
-        }
-    } catch (error) {
-        res.status(500).send(error);
-    }
-});
+app.get('/packages', packageController.getPackages);
+app.get('/packages/:id', packageController.getPackage);
 
-app.get('/profile', verifyToken, (req, res) => {
-    console.log('get profile');
-    res.json(req.user);
-});
-
-function verifyToken(req, res, next) {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
-    if (!token) {
-        return res.sendStatus(401);
-    }
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-        if (err) {
-            return res.sendStatus(403);
-        }
-        req.user = user;
-        next();
-    });
-}
+app.post('/book', verifyToken, bookingController.bookPackage);
 
 
 // Start the server at port 3000
