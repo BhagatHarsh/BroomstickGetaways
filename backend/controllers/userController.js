@@ -45,8 +45,7 @@ async function login(req, res) {
 async function profile(req, res) {
     console.log('Getting user profile');
     console.log(req.user);
-    const user = await User.findOne({ email: req.user.email});
-    res.json(user).status(200);
+    res.json(req.user).status(200);
 }
 
 module.exports = { register, login, profile };
