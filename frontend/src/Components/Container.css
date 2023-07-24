@@ -5,6 +5,12 @@
   overflow-y: hidden;
 }
 
+.CardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
 .container::-webkit-scrollbar {
   height: 12px;
 }
