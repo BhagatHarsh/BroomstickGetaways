@@ -17,7 +17,6 @@ async function getUsers() {
     const data = await response.json();
     return data;
   } else {
-    alert('Login failed!');
     return null;
   }
 }
@@ -30,15 +29,19 @@ function Home() {
   }, []);
 
   if (!data) {
-    return 'Loading...';
+    return (<>
+      <Navbar />
+      <FrontImage />
+      <CardContainer />
+    </>);
   }
 
   return (
     <>
       <h1>{data.name}</h1>
       <Navbar />
-      <FrontImage/>
-      <CardContainer/>
+      <FrontImage />
+      <CardContainer />
     </>
   );
 }

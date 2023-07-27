@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import './Login_Page.css';
 
 
@@ -34,17 +34,18 @@ function Login_Page() {
       })
 
       .then((response) => {
-        response.json()
         if (response.status === 200) {
           alert('Login successful!');
         }
         else {
           alert('Login failed!');
         }
+        return response.json()
       })
       .then((data) => {
         console.log('Success:', data);
         localStorage.setItem('token', data.accessToken);
+        window.location.href = '/';
       }
       )
     };
