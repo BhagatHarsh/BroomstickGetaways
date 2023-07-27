@@ -27,3 +27,12 @@
 .container::-webkit-scrollbar-thumb:hover {
   background-color: #a1a1a1;
 }
+
+.CardContainer {
+  overflow-x: auto;
+}
+
+.CardContainer__inner {
+  display: flex;
+  flex-direction: row;
+}

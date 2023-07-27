@@ -22,10 +22,12 @@ function CardContainer() {
   }, []);
 
   return (
-    <div className="CardContainer">
-      {data.map(item => (
-        <Card item={item} key={item._id} />
-      ))}
+    <div className="CardContainer" style={{ overflowX: 'auto' }}>
+      <div className="CardContainer__inner">
+        {data.map(item => (
+          <Card item={item} key={item._id} />
+        ))}
+      </div>
     </div>
   );
 }
