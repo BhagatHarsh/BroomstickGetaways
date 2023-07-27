@@ -1,38 +1,64 @@
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Login_Page.css';
 
 
 function Login_Page() {
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState(''); 
     const [password, setPassword] = useState('');
-  
-    const handleUsernameChange = (event) => {
-      setUsername(event.target.value);
-    };
+    const [successful, setSuccessful] = useState(false);
   
     const handlePasswordChange = (event) => {
       setPassword(event.target.value);
     };
+
+    const handleEmailChange = (event) => {
+      setEmail(event.target.value);
+    };
+
+    const handleSuccessfulRegistration = () => {
+      setSuccessful(true);
+    };
   
     const handleSubmit = (event) => {
       event.preventDefault();
-      console.log('Username:', username);
+      console.log('Email:', email);
       console.log('Password:', password);
-      // Perform login logic here
+
+      fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      })
+
+      .then((response) => {
+        response.json()
+        if (response.status === 200) {
+          alert('Login successful!');
+        }
+        else {
+          alert('Login failed!');
+        }
+      })
+      .then((data) => {
+        console.log('Success:', data);
+        localStorage.setItem('token', data.accessToken);
+      }
+      )
     };
+
   
     return (
     <div className="container">
       <form onSubmit={handleSubmit}>
         <label>
-          Username:
+          Email:
           <input
-            type="text"
-            value={username}
-            onChange={handleUsernameChange}
+            type="email"
+            value={email}
+            onChange={handleEmailChange}
           />
         </label>
         <br />

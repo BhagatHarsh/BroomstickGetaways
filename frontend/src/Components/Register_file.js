@@ -4,22 +4,12 @@ import './Register_file.css';
 
 function RegistrationForm() {
   const [name, setName] = useState('');
-  const [mobileNumber, setMobileNumber] = useState('');
-  const [address, setAddress] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [successful, setSuccessful] = useState(false);
 
   const handleNameChange = (event) => {
     setName(event.target.value);
-  };
-
-  const handleMobileNumberChange = (event) => {
-    setMobileNumber(event.target.value);
-  };
-
-  const handleAddressChange = (event) => {
-    setAddress(event.target.value);
   };
 
   const handleEmailChange = (event) => {
@@ -30,20 +20,49 @@ function RegistrationForm() {
     setPassword(event.target.value);
   };
 
-  const handleConfirmPasswordChange = (event) => {
-    setConfirmPassword(event.target.value);
+  const handleSuccessfulRegistration = () => {
+    setSuccessful(true);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log('Name:', name);
-    console.log('Mobile Number:', mobileNumber);
-    console.log('Address:', address);
     console.log('Email:', email);
     console.log('Password:', password);
-    console.log('Confirm Password:', confirmPassword);
     // Perform registration logic here
+
+    fetch('http://localhost:3000/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: name, email: email, password: password
+      }),
+    }).then((response) => {
+      console.log(response);
+      if (response.status === 200) {
+        alert('Registration successful!');
+        handleSuccessfulRegistration();
+      } else {
+        alert('Registration failed!');
+      }
+    }).catch((error) => {
+      console.error('Error:', error);
+    });
+
   };
+
+  if(successful) {
+    return (
+      <div>
+        <h1>Registration successful!</h1>
+        <p>
+          <Link to="/login">Click here to login</Link>
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="containers">
@@ -58,26 +77,6 @@ function RegistrationForm() {
               type="text"
               value={name}
               onChange={handleNameChange}
-              required
-            />
-          </label>
-          <br />
-          <label>
-            Mobile Number:
-            <input
-              type="text"
-              value={mobileNumber}
-              onChange={handleMobileNumberChange}
-              required
-            />
-          </label>
-          <br />
-          <label>
-            Address:
-            <input
-              type="text"
-              value={address}
-              onChange={handleAddressChange}
               required
             />
           </label>
@@ -98,16 +97,6 @@ function RegistrationForm() {
               type="password"
               value={password}
               onChange={handlePasswordChange}
-              required
-            />
-          </label>
-          <br />
-          <label>
-            Re-enter Password:
-            <input
-              type="password"
-              value={confirmPassword}
-              onChange={handleConfirmPasswordChange}
               required
             />
           </label>
