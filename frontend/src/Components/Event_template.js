@@ -8,15 +8,17 @@ import React from 'react';
 import T1 from './T1.js';
 import Template_container from './Template_container.js';
 // import FrontImage from './FrontImage.js';
-
+import { useParams } from 'react-router-dom';
 
 function Events() {
+
+  const { id } = useParams();
 
   return (
     <>
       <Navbar />
       <T1/>
-      <Template_container/>
+      <Template_container id ={id}/>
     </>
   );
 }
