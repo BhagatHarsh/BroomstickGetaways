@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Card from './Cards';
-import './Event_Card.css';
+import './Container.css';
 
 function CardContainer() {
   const [data, setData] = useState([]);

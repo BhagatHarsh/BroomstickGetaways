@@ -1,0 +1,19 @@
+.card-container {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  .card-container__inner {
+    display: flex;
+    padding: 10px;
+  }
+  
+  .car {
+    flex: 0 0 auto;
+    width: 300px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-right: 10px;
+    border-radius: 5px;
+  }
+  

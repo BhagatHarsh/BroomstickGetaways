@@ -1,16 +1,22 @@
 import React from 'react';
-import './Container.css';
+import './Template_container.css';
 
-function Template_container() {
+function Container() {
   return (
-    <div className="containe">
-      <div className="left-side">
-        <h2>Left Side Content</h2>
-        <p>This is the content on the left side of the partition line.</p>
+    <div className="container">
+      <div className="partitions">
+        <div className="upper">
+          <h2>Upper Partition</h2>
+          <p>This is the content in the upper partition.</p>
+        </div>
+        <div className="partition"></div>
+        <div className="lower">
+          <h2>Lower Partition</h2>
+          <p>This is the content in the lower partition.</p>
+        </div>
       </div>
       <div className="right-side">
-        <h2>Right Side Content</h2>
-        <div className="card">
+        <div className="cardss">
           <h3>Card Title</h3>
           <p>This is the content of the card.</p>
         </div>
@@ -19,4 +25,4 @@ function Template_container() {
   );
 }
 
-export default Template_container;
+export default Container;
