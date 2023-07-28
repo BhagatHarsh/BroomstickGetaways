@@ -21,12 +21,10 @@ function CardContainer() {
       });
   }, []);
 
-  const limitedData = data.slice(0, 6); // Take only the first 6 items
-
   return (
-    <div className="CardContainer" style={{ overflowX: 'auto' }}>
-      <div className="CardContainer__inner">
-        {limitedData.map(item => (
+    <div className="CardContainers" style={{ overflowX: 'auto' }}>
+      <div className="CardContainer__inners">
+        {data.map(item => (
           <Card item={item} key={item._id} />
         ))}
       </div>
