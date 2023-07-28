@@ -3,7 +3,7 @@ import './Container.css';
 
 function Template_container() {
   return (
-    <div className="container">
+    <div className="containe">
       <div className="left-side">
         <h2>Left Side Content</h2>
         <p>This is the content on the left side of the partition line.</p>
