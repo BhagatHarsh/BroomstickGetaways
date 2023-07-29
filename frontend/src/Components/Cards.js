@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { Link } from 'react-router-dom';
 
 function Cards({ item }) {
   const [showFullDescription, setShowFullDescription] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const cardStyle = {
     width: '18rem',
@@ -14,27 +16,39 @@ function Cards({ item }) {
     ? `${item.itinerary.slice(0, 100)}...`
     : item.itinerary;
 
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentImageIndex(prevIndex =>
+        prevIndex === item.images.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 2000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
   return (
-    <a href={item.link} target="_blank" rel="noopener noreferrer">
-      <Card style={cardStyle}>
-        <Card.Img variant="top" src={item.images[0]} />
-        <Card.Body>
-          <Card.Title>{item.name}</Card.Title>
-          <Card.Text>
-            {showFullDescription ? item.itinerary : truncatedDescription}
-          </Card.Text>
-          {item.itinerary && item.itinerary.length > 100 && (
-            <Button
-              variant="link"
-              onClick={() => setShowFullDescription(!showFullDescription)}
-              className="read-more-button"
-            >
-              {showFullDescription ? 'Read less' : 'Read more'}
-            </Button>
-          )}
-        </Card.Body>
-      </Card>
-    </a>
+    <Card style={cardStyle}>
+      <Card.Img variant="top" src={item.images[currentImageIndex]} />
+      <Card.Body>
+        <Card.Title>
+          <Link to={`/Event_template/${item._id}`} target="_blank" rel="noopener noreferrer">
+            {item.name}
+          </Link>
+        </Card.Title>
+        <Card.Text>
+          {showFullDescription ? item.itinerary : truncatedDescription}
+        </Card.Text>
+        {item.itinerary && item.itinerary.length > 100 && (
+          <Button
+            variant="link"
+            onClick={() => setShowFullDescription(!showFullDescription)}
+            className="read-more-button"
+          >
+            {showFullDescription ? 'Read less' : 'Read more'}
+          </Button>
+        )}
+      </Card.Body>
+    </Card>
   );
 }
 

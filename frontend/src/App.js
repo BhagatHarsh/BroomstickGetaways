@@ -14,13 +14,12 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 function App() {
   return (
     <Router>
-      {/* <Home/> */}
       <Routes>
         <Route path='/' exact element={<Home/>} />
         <Route path='/Events' exact element={<Events/>} />
         <Route path='/LoginSignup' exact element={<LoginSignup/>} />
         <Route path='/register' exact element={<Register/>} />
-        <Route path='/Event_template' exact element={<Event_template/>} />
+        <Route path='/Event_template/:id' exact element={<Event_template/>} />
       </Routes>
       
 
