@@ -1,39 +1,37 @@
-.container {
+.partitions {
     display: flex;
-    height: 50vh;
-    padding: 50px;
-  }
-  
-  .partitions {
-    display: flex;
-    flex-direction: column;
-    margin-right: 20px;
-    flex: 2;
-  }
-  
-  .partition {
-    width: 1px;
-    background-color: #ccc;
-    margin-bottom: 20px;
   }
   
   .upper {
     flex: 1;
   }
   
-  .lower {
-    flex: 1;
-  margin-top: 20px;
-  border-top: 1px solid #ccc;
+  .right-card {
+    background-color: #f2f2f2; /* Set the background color to the desired value */
+    padding: 40px; /* Add padding to the right card */
   }
   
-  .cardss{
-    background-color: #f2f2f2;
-    padding: 70px;
-    border-radius: 5px;
+  .container.increased-height {
+    height: 300px; /* adjust to your desired height */
+    padding: 40px;
   }
   
-  .right-side {
-    flex: 1;
+  
+  .price,
+  .time {
+    font-weight: bold; /* Apply a bold font weight to the price and time */
+  }
+  
+  .book-now-button {
+    background-color: #4CAF50; /* Set the background color of the button to the desired value */
+    color: white;
+    padding: 10px;
+    border: none;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  
+  .book-now-button:hover {
+    background-color: #45a049; /* Set the background color of the button on hover */
   }
   

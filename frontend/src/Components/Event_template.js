@@ -4,6 +4,7 @@ import Template_container from './Template_container.js';
 import T_CardContainer from './T_CardContainer.js';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import RatingsAndReviews from './RatingsAndReviews.js';
 
 function Events() {
   
@@ -39,6 +40,7 @@ function Events() {
       <T1 data = {data}/>
       <Template_container data ={data}/>
       <T_CardContainer/>
+      <RatingsAndReviews/>
       
     </>
   );

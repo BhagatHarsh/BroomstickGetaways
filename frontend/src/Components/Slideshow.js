@@ -21,7 +21,7 @@ function Slideshow({ images }) {
       alt={`${currentImageIndex}`}
       style={{ width: '100%',
       height: '13cm',
-      objectFit: 'none',
+      objectFit: 'cover',
       objectPosition: 'center' }}
     />
   );
