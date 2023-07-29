@@ -32,7 +32,6 @@ function Events() {
     return <div>Loading...</div>;
   }
   
-  
   return (
     <>
       <Navbar />

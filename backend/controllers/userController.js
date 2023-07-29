@@ -14,7 +14,7 @@ async function register(req, res) {
             password: hashedPassword,
         });
         const savedUser = await user.save();
-        res.json(savedUser).status(201);
+        res.status(201).json(savedUser);
     } catch (error) {
         res.status(500).send(error);
     }
@@ -25,7 +25,6 @@ async function login(req, res) {
     console.log(req.body);
     try {
         const user = await User.findOne({ email: req.body.email});
-        console.log(user);
         if (!user) {
             return res.status(400).send('Cannot find user');
         }
@@ -33,9 +32,10 @@ async function login(req, res) {
         if (passwordMatch) {
             const expirationTime = Math.floor(Date.now() / 1000) + (60 * 60);
             const accessToken = jwt.sign({ email: user.email, exp: expirationTime }, process.env.ACCESS_TOKEN_SECRET);
-            res.json({ accessToken }).status(200);
+            console.log('Access Token:', accessToken);
+            res.status(200).json({ accessToken });
         } else {
-            res.send('Not Allowed').status(401);
+            res.status(401).send('Not Allowed');
         }
     } catch (error) {
         res.status(500).send(error);
@@ -45,7 +45,7 @@ async function login(req, res) {
 async function profile(req, res) {
     console.log('Getting user profile');
     console.log(req.user);
-    res.json(req.user).status(200);
+    res.status(200).json(req.user);
 }
 
 module.exports = { register, login, profile };

@@ -7,7 +7,6 @@ function LoginSignup() {
     <Navbar />
     <Login_page/>
     </>
-
   );
 }
 

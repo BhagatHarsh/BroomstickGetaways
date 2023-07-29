@@ -5,8 +5,7 @@ import { Link } from 'react-router-dom';
 
 function Cards({ item }) {
   const [showFullDescription, setShowFullDescription] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
+  
   const cardStyle = {
     width: '18rem',
     margin: '1rem',
