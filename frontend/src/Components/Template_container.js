@@ -14,8 +14,8 @@ function Container(props) {
         </div>
         <div className="right-card">
           <h2></h2>
-          <p className="price">Price = {data.price}</p>
-          <p className="time">Time: 2 hours</p>
+          <p className="price">Price = {data.price} Galleon</p>
+          <p className="time">Time: {data.time} days</p>
           <button className="book-now-button">Book Now</button>
         </div>
       </div>

@@ -11,18 +11,23 @@ function BasicExample({ data }) {
     setUsername(data ? data.name : 'Login');
   }, [data]);
 
-
   const styles = {
     position: 'absolute',
     top: '10%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    zIndex: 1
+    zIndex: 1,
+    backdropFilter: 'blur(1000px)',
+    backgroundColor: 'rgba(255, 255, 255, 0.6)',
+    opacity: 0.8,
+    // Add fontWeight property to make the text bolder
+    fontWeight: 'bold',
+    borderRadius:'40px'
   };
   
   return (
     <Navbar expand="lg" className="bg-body-tertiary" style={styles}>
-        <Navbar.Brand href="/">Broomstck-Gateaways</Navbar.Brand>
+        <Navbar.Brand href="/">Broomstick-Getaways</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
