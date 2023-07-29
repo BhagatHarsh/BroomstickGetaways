@@ -16,19 +16,9 @@ function Cards({ item }) {
     ? `${item.itinerary.slice(0, 100)}...`
     : item.itinerary;
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentImageIndex(prevIndex =>
-        prevIndex === item.images.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 2000);
-
-    return () => clearInterval(intervalId);
-  }, []);
-
   return (
     <Card style={cardStyle}>
-      <Card.Img variant="top" src={item.images[currentImageIndex]} />
+      <Card.Img variant="top" src={item.images[0]} />
       <Card.Body>
         <Card.Title>
           <Link to={`/Event_template/${item._id}`} target="_blank" rel="noopener noreferrer">
