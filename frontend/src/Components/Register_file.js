@@ -24,8 +24,17 @@ function RegistrationForm() {
     setSuccessful(true);
   };
 
+  const validateEmail = (email) => {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (!validateEmail(email)) {
+      alert('Invalid email format!');
+      return;
+    }
     console.log('Name:', name);
     console.log('Email:', email);
     console.log('Password:', password);
@@ -41,7 +50,7 @@ function RegistrationForm() {
       }),
     }).then((response) => {
       console.log(response);
-      if (response.status === 200) {
+      if (response.status === 201) {
         alert('Registration successful!');
         handleSuccessfulRegistration();
       } else {
@@ -54,14 +63,7 @@ function RegistrationForm() {
   };
 
   if(successful) {
-    return (
-      <div>
-        <h1>Registration successful!</h1>
-        <p>
-          <Link to="/login">Click here to login</Link>
-        </p>
-      </div>
-    );
+    window.location.href = '/LoginSignup';  
   }
 
   return (

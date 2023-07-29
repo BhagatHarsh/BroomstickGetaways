@@ -7,10 +7,7 @@ function CardContainer() {
 
   useEffect(() => {
     fetch('http://localhost:3000/packages', {
-      method: 'GET',
-      headers: {
-        'Access-Control-Allow-Origin': 'http://localhost:3001'
-      }
+      method: 'GET'
     })
       .then(response => response.json())
       .then(data => {

@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Login_Page.css';
-
 
 function Login_Page() {
     const [email, setEmail] = useState(''); 
     const [password, setPassword] = useState('');
-    const [successful, setSuccessful] = useState(false);
-  
+
     const handlePasswordChange = (event) => {
       setPassword(event.target.value);
     };
@@ -16,12 +14,17 @@ function Login_Page() {
       setEmail(event.target.value);
     };
 
-    const handleSuccessfulRegistration = () => {
-      setSuccessful(true);
-    };
+    const validateEmail = (email) => {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(String(email).toLowerCase());
+    }
   
     const handleSubmit = (event) => {
       event.preventDefault();
+      if (!validateEmail(email)) {
+        alert('Invalid email format!');
+        return;
+      }
       console.log('Email:', email);
       console.log('Password:', password);
 
@@ -34,6 +37,7 @@ function Login_Page() {
       })
 
       .then((response) => {
+        console.log(response);
         if (response.status === 200) {
           alert('Login successful!');
         }
@@ -57,7 +61,7 @@ function Login_Page() {
         <label>
           Email:
           <input
-            type="email"
+            type="text"
             value={email}
             onChange={handleEmailChange}
           />
@@ -83,4 +87,3 @@ function Login_Page() {
   }
   
   export default Login_Page;
-

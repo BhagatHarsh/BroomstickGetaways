@@ -1,7 +1,7 @@
 import Navbar from './BasicExample.js'
 import FrontImage from './FrontImage.js';
 import CardContainer from './CardContainer.js';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 async function getUsers() {
   const token = localStorage.getItem('token');
@@ -15,31 +15,26 @@ async function getUsers() {
 
   if (response.status === 200) {
     const data = await response.json();
+    console.log(data); 
     return data;
   } else {
     return null;
   }
+
 }
 
 function Home() {
-  const [data, setData] = React.useState(null);
+  const [data, setData] = useState(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     getUsers().then((userData) => setData(userData));
   }, []);
 
-  if (!data) {
-    return (<>
-      <Navbar />
-      <FrontImage />
-      <CardContainer />
-    </>);
-  }
+  
 
   return (
     <>
-      <h1>{data.name}</h1>
-      <Navbar />
+      <Navbar data={data} />
       <FrontImage />
       <CardContainer />
     </>

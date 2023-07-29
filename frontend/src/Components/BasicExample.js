@@ -1,9 +1,17 @@
-// import Container from 'react-bootstrap/Container';
+import React, { useState, useEffect } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
-function BasicExample() {
+function BasicExample({ data }) {
+
+  const [username, setUsername] = useState(null);
+
+  useEffect(() => {
+    setUsername(data ? data.name : 'Login');
+  }, [data]);
+
+
   const styles = {
     position: 'absolute',
     top: '10%',
@@ -18,7 +26,7 @@ function BasicExample() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/LoginSignup">Login</Nav.Link>
+          <Nav.Link href="/LoginSignup">{username}</Nav.Link>
             <Nav.Link href="/Events">Events</Nav.Link>
             <Nav.Link href="/Event_template">Template</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
