@@ -1,19 +1,12 @@
 import React from 'react';
 import Slideshow from './Slideshow.js';
 
-function T1() {
-  const images = [
-    require('../Images/Image.jpg'),
-    require('../Images/images1.jpeg'),
-    require('../Images/Images2.jpeg')
-  ];
-
-  
-
+function T1(props){
+  const data = props.data;
 
   return (
     <div>
-      <Slideshow images={images} />
+      <Slideshow images={data.images} />
     </div>
   );
 }

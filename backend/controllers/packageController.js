@@ -10,6 +10,8 @@ async function getPackages(req, res) {
 }
 
 async function getPackage(req, res) {
+    console.log('getPackage');
+    console.log(req.params.id);
     try {
         const package = await Package.findById(req.params.id);
         if (!package) res.status(404).send('No package found');

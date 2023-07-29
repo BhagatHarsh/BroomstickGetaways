@@ -1,30 +1,10 @@
-// import React from 'react';
+import React from 'react';
 import './Template_container.css';
 import './Container.css';
-import React, { useEffect, useState } from 'react';
 
 function Container(props) {
-    
-  
-  const id = props.id;
-  
-  const [data, setData] = useState([]);
-  
-  useEffect(() => {
-    fetch(`http://localhost:3000/package/${id}`, {
-      method: 'GET',
-      headers: {
-        'Access-Control-Allow-Origin': 'http://localhost:3001'
-      }
-    })
-      .then(response => response.json())
-      .then(data => {
-        setData(data);
-      })
-      .catch(error => {
-        console.log('Error fetching data:', error);
-      });
-  }, []);
+
+  const data = props.data;
 
   return (
     <div className="container">
