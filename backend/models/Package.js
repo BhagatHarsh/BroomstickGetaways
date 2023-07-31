@@ -5,7 +5,7 @@ const PackageSchema = new mongoose.Schema({
     price: { type: Number, required: true },
     itinerary: { type: String, required: true },
     images: [String], // array of image URLs
-    includes: [String], // array of included services/features
+    time: { type: Number, required: true }, // in days
     admin: { type: mongoose.Schema.Types.ObjectId, ref: 'Admin' }
 }, { timestamps: true });
 
