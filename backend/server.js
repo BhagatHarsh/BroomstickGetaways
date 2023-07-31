@@ -41,12 +41,16 @@ app.get('/profile', verifyToken, userController.profile);
 app.get('/packages', packageController.getPackages);
 app.get('/package/:id', packageController.getPackage);
 
+// Review routes
+app.get('/reviews', reviewController.getReviews);
+app.post('/review', verifyToken, reviewController.createReview);
+
 // Booking route
 app.post('/book', verifyToken, bookingController.bookPackage);
 
 // Admin routes
-app.get('/admin/sales', verifyAdminToken, adminController.getSalesData);
 app.post('/admin/create', generateAdminToken);
+app.get('/admin/sales', verifyAdminToken, adminController.getSalesData);
 app.post('/admin/package', verifyAdminToken, adminController.createPackage); 
 app.put('/admin/package/:id', verifyAdminToken, adminController.updatePackage);
 app.delete('/admin/package/:id', verifyAdminToken, adminController.deletePackage); 
