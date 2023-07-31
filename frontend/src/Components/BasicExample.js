@@ -33,7 +33,7 @@ function BasicExample({ data }) {
           <Nav className="me-auto">
           <Nav.Link href="/LoginSignup">{username}</Nav.Link>
             <Nav.Link href="/Events">Packages</Nav.Link>
-            
+            <Nav.Link href="/Profile">Profile</Nav.Link>
           </Nav>
         </Navbar.Collapse>
     </Navbar>

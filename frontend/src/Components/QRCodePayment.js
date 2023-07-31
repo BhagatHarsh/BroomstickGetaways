@@ -32,13 +32,15 @@ const QRCodePayment = ({ onPaymentSuccess }) => {
     }, []);
 
     return paymentURL ? (
-        <>
-        <QRCode value={paymentURL} />
-        <button onClick={onPaymentSuccess}>Simulate Payment Success</button>
-        </>
-    ) : (
+        
+          <div className="qr-code-payment-content">
+            <QRCode value={paymentURL} />
+            <button onClick={onPaymentSuccess}>Simulate Payment Success</button>
+          </div>
+        
+      ) : (
         <p>Loading...</p>
-    );
+      );
 };
 
 export default QRCodePayment;

@@ -1,5 +1,12 @@
-.qrcode {
-    width: 100%;
-    max-width: 200px;
-    margin: 0 auto;
-  }
+/* QRCodePayment.css */
+
+
+
+.qr-code-payment-content {
+  text-align: center;
+}
+
+.qr-code-payment-content .qrcode {
+  padding: 0;
+  margin: 0;
+}
