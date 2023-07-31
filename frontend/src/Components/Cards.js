@@ -9,6 +9,10 @@ function Cards({ item }) {
   const cardStyle = {
     width: '18rem',
     margin: '1rem',
+    borderRadius: '2rem',
+    borderWidth: '1rem',
+    borderColor: '#569a74'
+    
   };
 
   const truncatedDescription = item.itinerary && item.itinerary.length > 100
@@ -17,7 +21,11 @@ function Cards({ item }) {
 
   return (
     <Card style={cardStyle}>
-      <Card.Img variant="top" src={item.images[0]} />
+      <Card.Img
+    variant="top"
+    src={item.images[0]}
+    style={{ borderRadius: '10px' }} // Add border radius style
+  />
       <Card.Body>
         <Card.Title>
           <Link to={`/Event_template/${item._id}`} target="_blank" rel="noopener noreferrer">

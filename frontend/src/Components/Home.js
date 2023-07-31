@@ -2,6 +2,7 @@ import Navbar from './BasicExample.js'
 import FrontImage from './FrontImage.js';
 import CardContainer from './CardContainer.js';
 import React, { useState, useEffect } from 'react';
+import Footer from './Footer.js';
 
 async function getUsers() {
   const token = localStorage.getItem('token');
@@ -37,6 +38,7 @@ function Home() {
       <Navbar data={data} />
       <FrontImage />
       <CardContainer />
+      <Footer/>
     </>
   );
 }

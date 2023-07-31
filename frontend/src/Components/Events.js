@@ -5,6 +5,7 @@ import Event_Image from './Event_Image.js';
 import CardContainer from './CardContainer.js';
 import Event_cardContainer from './Event_cardContainer.js';
 import React from 'react';
+import Footer from './Footer.js';
 
 function Events() {
   return (
@@ -12,6 +13,7 @@ function Events() {
       <Navbar />
       <Event_Image/>
       <Event_cardContainer/> 
+      <Footer/>
     </>
   );
 }

@@ -27,6 +27,7 @@
     justify-content: center;
     padding: 0 20px;
     overflow-x: auto;
+    background-color: #bfceb4;
   }
   
   .CardContainer__inners {

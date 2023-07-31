@@ -8,7 +8,7 @@ function Event_Image() {
           src={require('../Images/Image.jpg')}
           style={{ width: '100vw',
           height: '4cm',
-          objectFit: 'none',
+         
           objectPosition: 'center' }}
         />
         </div>

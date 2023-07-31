@@ -5,6 +5,7 @@ import T_CardContainer from './T_CardContainer.js';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import RatingsAndReviews from './RatingsAndReviews.js';
+import Footer from './Footer.js';
 
 function Events() {
   
@@ -38,8 +39,9 @@ function Events() {
       <Navbar />
       <T1 data = {data}/>
       <Template_container data ={data}/>
-      <T_CardContainer/>
+      
       <RatingsAndReviews/>
+      <Footer/>
       
     </>
   );

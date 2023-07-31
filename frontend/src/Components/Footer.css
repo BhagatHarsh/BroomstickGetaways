@@ -1,0 +1,44 @@
+/* Footer.css */
+
+footer {
+    background-color: #1e1c1c;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+  }
+  
+  .footer-logo {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px;
+  }
+  
+  .footer-contact {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px;
+  }
+  
+  .footer-contact h3,
+  .footer-contact p {
+    margin: 0;
+    padding: 5px 0;
+    color: #f6f9f7;
+    
+  }
+  
+  .footer-logo img {
+    width: 300px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Remove any extra space around the image */
+    
+  }
+  
