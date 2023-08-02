@@ -20,10 +20,8 @@ async function createReview(req, res) {
 
 async function getReviews(req, res) {
     console.log("getReviews")
-    console.log(req.body);
     try {
-        const packageId = req.body._id;
-        const reviews = await Review.find({ package: packageId }).populate('user', 'name');
+        const reviews = await Review.find({}).populate('user', 'name').populate('package', 'name');
         console.log(reviews);
         res.json(reviews);
     } catch (error) {

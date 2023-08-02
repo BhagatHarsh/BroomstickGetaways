@@ -2,33 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import StarRatingComponent from 'react-star-rating-component';
 
-const getReviews = async (id) => {
-  const response = await fetch('http://localhost:3000/reviews', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ _id: id }),
-  });
-  const data = await response.json();
-  return data;
-};
-
 const RatingsAndReviews = (props) => {
   const userData = props.userData;
   const [review, setReview] = useState("");
   const [rating, setRating] = useState(0);
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const reviews = await getReviews(props.data._id);
-      console.log("Reviews: " + reviews);
-      setData(reviews);
-    };
-
-    fetchData();
-  }, [props.data._id]);
 
   const handleReviewChange = (e) => {
     setReview(e.target.value);

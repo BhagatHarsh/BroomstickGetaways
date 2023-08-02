@@ -42,7 +42,7 @@ app.get('/packages', packageController.getPackages);
 app.get('/package/:id', packageController.getPackage);
 
 // Review routes
-app.post('/reviews', reviewController.getReviews);
+app.get('/reviews', reviewController.getReviews);
 app.post('/review', verifyToken, reviewController.createReview);
 
 // Booking route
