@@ -2,8 +2,10 @@ const Package = require('../models/Package');
 const Booking = require('../models/Booking');
 
 async function bookPackage(req, res) {
+    console.log('Booking package');
+    console.log(req.body);
     try {
-        const package = await Package.findById(req.body.id);
+        const package = await Package.findById(req.body._id);
         if (!package) return res.status(404).send('Package not found');
         
         const newBooking = new Booking({
@@ -12,8 +14,8 @@ async function bookPackage(req, res) {
             dateOfBooking: Date.now()
         });
         
-        const savedBooking = await newBooking.save();
-        res.json(savedBooking).status(200);
+        await newBooking.save();
+        res.status(200).send("Booking successful");
     } catch (error) {
         res.status(500).send(error);
     }

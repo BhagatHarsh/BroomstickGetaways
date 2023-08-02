@@ -1,6 +1,6 @@
-import Navbar from './BasicExample.js'
+import React, { useEffect, useState } from 'react';
+import Navbar from './BasicExample.js';
 import Event_Image from './Event_Image.js';
-import { useEffect, useState } from 'react';
 import Footer from './Footer.js';
 
 async function getUser() {
@@ -15,17 +15,13 @@ async function getUser() {
 
   if (response.status === 200) {
     const data = await response.json();
-    console.log(data); 
     return data;
   } else {
     return null;
   }
-
 }
 
-
 function Profile() {
-
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -34,9 +30,19 @@ function Profile() {
 
   return (
     <>
-      <Navbar data={data}/>
-      <Event_Image/>
-      <Footer/>
+      <Navbar data={data} />
+      <Event_Image />
+      <div className="container">
+        <div className="row">
+          <div className="col-md-6">
+            <div className="profile-head">
+              <h5>{data ? data.name : 'Loading...'}</h5>
+              <h6>{data ? data.email : 'Loading...'}</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+      <Footer />
     </>
   );
 }

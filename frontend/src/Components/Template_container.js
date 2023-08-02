@@ -5,35 +5,23 @@ import './Container.css';
 import Modal from './Modal';
 import QRCodePayment from './QRCodePayment';
 
-async function getUser() {
+async function bookPackage(data) {
   const token = localStorage.getItem('token');
-  const response = await fetch('http://localhost:3000/profile', {
-    method: 'GET',
+  const response = await fetch('http://localhost:3000/book', {
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     },
+    body: JSON.stringify(data)
   });
 
-  if (response.status === 200) {
-    const data = await response.json();
-    console.log(data);
-    return data;
-  } else {
-    return null;
-  }
+  return response.status;
 }
 
 function Container(props) {
-  const [userData, setData] = useState(null);
-  const [loading, setLoading] = useState(true); // Add a loading state
-
-  useEffect(() => {
-    getUser().then((userData) => {
-      setData(userData);
-      setLoading(false); // Set loading to false once the data is fetched
-    });
-  }, []);
+  const [booked, setBooked] = useState(false); // Add a booked state
+  const userData = props.userData;
 
   const data = props.data;
   const [showModal, setShowModal] = useState(false);
@@ -46,15 +34,21 @@ function Container(props) {
   const handlePaymentSuccess = () => {
     setPaymentSuccess(true);
     setShowModal(false);
+        bookPackage(data).then((status) => {
+      if (status === 200) {
+        setBooked(true);
+      } else {
+        console.log('Booking failed');
+      }
+    });
+  };
+
+  const handleBookPackage = () => {
+    handleOpenModal();
   };
 
   // Check if user is logged in
   const isLoggedIn = userData && userData.name !== undefined && userData.name !== '';
-
-  // If the data is still loading, return a loading message
-  if (loading) {
-    return <div>Loading...</div>;
-  }
 
   // Once the data has been fetched, render the component as usual
   return (
@@ -69,15 +63,13 @@ function Container(props) {
           <p className="price">Price = {data.price} Galleon</p>
           <p className="time">Time: {data.time} days</p>
           <div>
-            {isLoggedIn ? (
-              <button className="book-now-button" onClick={handleOpenModal}>
+            {isLoggedIn && !booked && (
+              <button className="book-now-button" onClick={handleBookPackage}>
                 Book Now
               </button>
-            ) : (
-              <Link
-                to="/LoginSignup"
-                className="book-now-button"
-              >
+            )}
+            {!isLoggedIn && !booked && (
+              <Link to="/LoginSignup" className="book-now-button">
                 Continue to Login
               </Link>
             )}

@@ -63,11 +63,9 @@ function Events() {
     <>
       <Navbar data = {profile}/>
       <T1 data = {data}/>
-      <Template_container data ={data}/>
-      
-      <RatingsAndReviews/>
+      <Template_container data ={data} userData={profile}/>
+      <RatingsAndReviews data={data} userData={profile}/>
       <Footer/>
-      
     </>
   );
 }
