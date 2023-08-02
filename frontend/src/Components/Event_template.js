@@ -6,12 +6,38 @@ import { useParams } from 'react-router-dom';
 import RatingsAndReviews from './RatingsAndReviews.js';
 import Footer from './Footer.js';
 
+async function getUser() {
+  const token = localStorage.getItem('token');
+  const response = await fetch('http://localhost:3000/profile', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+  });
+
+  if (response.status === 200) {
+    const data = await response.json();
+    console.log(data); 
+    return data;
+  } else {
+    return null;
+  }
+
+}
+
 function Events() {
   
   const { id } = useParams();
 
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const [profile, setProfile] = useState(null);
+
+  useEffect(() => {
+    getUser().then((userData) => setProfile(userData));
+  }, []);
   
   useEffect(() => {
     fetch(`http://localhost:3000/package/${id}`, {
@@ -35,7 +61,7 @@ function Events() {
   
   return (
     <>
-      <Navbar />
+      <Navbar data = {profile}/>
       <T1 data = {data}/>
       <Template_container data ={data}/>
       

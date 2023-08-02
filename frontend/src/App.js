@@ -10,7 +10,6 @@ import Profile from './Components/Profile.js';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 
-// import SmokeEffect from './Components/SmokeEffect';
 
 function App() {
   return (
