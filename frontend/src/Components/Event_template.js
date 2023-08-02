@@ -1,7 +1,6 @@
 import Navbar from './BasicExample.js'
 import T1 from './T1.js';
 import Template_container from './Template_container.js';
-import T_CardContainer from './T_CardContainer.js';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import RatingsAndReviews from './RatingsAndReviews.js';

@@ -4,14 +4,13 @@
   overflow-x: auto;
   overflow-y: hidden;
   padding: 20px;
-   /* Add padding from both sides */
 }
 
 .CardContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  background-color: #bfceb4;
+  /* background-color: #bfceb4; */
 }
 
 .container::-webkit-scrollbar {
@@ -32,7 +31,7 @@
 }
 
 .CardContainer {
-  padding: 0 20px;
+  /* padding: 0 20px; */
   overflow-x: auto;
 }
 

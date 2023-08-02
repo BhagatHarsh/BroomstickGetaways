@@ -4,7 +4,7 @@ import CardContainer from './CardContainer.js';
 import React, { useState, useEffect } from 'react';
 import Footer from './Footer.js';
 
-async function getUsers() {
+async function getUser() {
   const token = localStorage.getItem('token');
   const response = await fetch('http://localhost:3000/profile', {
     method: 'GET',
@@ -28,7 +28,7 @@ function Home() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    getUsers().then((userData) => setData(userData));
+    getUser().then((userData) => setData(userData));
   }, []);
 
   
