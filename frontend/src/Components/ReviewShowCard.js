@@ -1,6 +1,7 @@
 import React from 'react';
 
 const ReviewShowCard = ({ review }) => {
+  console.log("rev" + review);
   const stars = [];
   for(let i = 0; i < review.rating; i++) {
     stars.push(<span key={i}>⭐</span>);

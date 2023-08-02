@@ -5,7 +5,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import RatingsAndReviews from './RatingsAndReviews.js';
 import Footer from './Footer.js';
-import ReviewShowCard from './ReviewShowCard.js';
 
 
 async function getUser() {
@@ -28,11 +27,14 @@ async function getUser() {
 
 }
 
+
+
 function Events() {
   
   const { id } = useParams();
 
   const [data, setData] = useState([]);
+  
   const [isLoading, setIsLoading] = useState(true);
 
   const [profile, setProfile] = useState(null);
@@ -40,6 +42,7 @@ function Events() {
   useEffect(() => {
     getUser().then((userData) => setProfile(userData));
   }, []);
+
   
   useEffect(() => {
     fetch(`http://localhost:3000/package/${id}`, {
@@ -67,7 +70,6 @@ function Events() {
       <T1 data = {data}/>
       <Template_container data ={data} userData={profile}/>
       <RatingsAndReviews data={data} userData={profile}/>
-      <ReviewShowCard review={review}/>
       <Footer/>
     </>
   );
