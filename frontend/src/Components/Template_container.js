@@ -72,7 +72,7 @@ function Container(props) {
             )}
             {!isLoggedIn && !booked && (
               <Link to="/LoginSignup" className="book-now-button">
-                Continue to Login
+                Login to Continue
               </Link>
             )}
             <Modal show={showModal} handleClose={() => setShowModal(false)}>
