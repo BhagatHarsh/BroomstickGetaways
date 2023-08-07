@@ -4,6 +4,7 @@ import CardContainer from "./CardContainer.js";
 import React, { useState, useEffect } from "react";
 import Footer from "./Footer.js";
 import ReviewShowCard from "./ReviewShowCard.js";
+import "./Home.css";
 const DOMAIN = process.env.REACT_APP_DOMAIN;
 console.log("DOMAIN: " + DOMAIN);
 

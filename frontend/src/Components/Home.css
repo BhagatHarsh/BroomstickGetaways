@@ -1,0 +1,10 @@
+/* Specify a container element that wraps the entire page */
+body {
+    overflow-x: hidden; /* Hide horizontal overflow */
+  }
+  
+  /* Specify the carousel container that contains the inner scroll wheel */
+  .CardContainer {
+    overflow-x: auto; /* Allow horizontal overflow for the carousel */
+  }
+  
