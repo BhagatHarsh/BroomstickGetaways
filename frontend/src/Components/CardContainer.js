@@ -54,7 +54,7 @@ function CardContainer() {
       }
 
       p.setup = () => {
-        p.createCanvas(p.windowWidth, p.windowHeight - 300);
+        p.createCanvas(p.windowWidth, p.windowHeight);
         p.canvas.style.position = 'absolute';
         p.canvas.style.zIndex = '-1';
         for (let i = 0; i < 800; i++) {
