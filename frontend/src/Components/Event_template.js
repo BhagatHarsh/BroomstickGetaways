@@ -6,10 +6,12 @@ import { useParams } from 'react-router-dom';
 import RatingsAndReviews from './RatingsAndReviews.js';
 import Footer from './Footer.js';
 
+const DOMAIN = process.env.REACT_APP_DOMAIN;
+
 
 async function getUser() {
   const token = localStorage.getItem('token');
-  const response = await fetch('http://localhost:3000/profile', {
+  const response = await fetch(DOMAIN + 'profile', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -45,7 +47,7 @@ function Events() {
 
   
   useEffect(() => {
-    fetch(`http://localhost:3000/package/${id}`, {
+    fetch(DOMAIN + `package/${id}`, {
       method: 'GET'
     })
       .then(response => response.json())

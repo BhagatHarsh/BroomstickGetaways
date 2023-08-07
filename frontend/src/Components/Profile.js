@@ -3,9 +3,11 @@ import Navbar from './BasicExample.js';
 import Event_Image from './Event_Image.js';
 import Footer from './Footer.js';
 
+const DOMAIN = process.env.REACT_APP_DOMAIN;
+
 async function getUser() {
   const token = localStorage.getItem('token');
-  const response = await fetch('http://localhost:3000/profile', {
+  const response = await fetch(DOMAIN + 'profile', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

@@ -5,9 +5,11 @@ import './Container.css';
 import Modal from './Modal';
 import QRCodePayment from './QRCodePayment';
 
+const DOMAIN = process.env.REACT_APP_DOMAIN;
+
 async function bookPackage(data) {
   const token = localStorage.getItem('token');
-  const response = await fetch('http://localhost:3000/book', {
+  const response = await fetch( DOMAIN + 'book', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

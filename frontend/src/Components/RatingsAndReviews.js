@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import StarRatingComponent from 'react-star-rating-component';
 
+const DOMAIN = process.env.REACT_APP_DOMAIN;
+
 const RatingsAndReviews = (props) => {
   const userData = props.userData;
   const [review, setReview] = useState("");
@@ -18,7 +20,7 @@ const RatingsAndReviews = (props) => {
   const handleSubmit = async (e) => {
     const token = localStorage.getItem('token');
     e.preventDefault();
-    await fetch('http://localhost:3000/review', {
+    await fetch(DOMAIN + 'review', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

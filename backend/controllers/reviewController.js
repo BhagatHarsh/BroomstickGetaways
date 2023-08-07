@@ -22,7 +22,7 @@ async function getReviews(req, res) {
     console.log("getReviews")
     try {
         const reviews = await Review.find({}).populate('user', 'name').populate('package', 'name');
-        console.log(reviews);
+        // console.log(reviews);
         res.json(reviews);
     } catch (error) {
         res.status(500).send("Dementors on the loose! Error: " + error.message);

@@ -4,9 +4,11 @@ import Event_cardContainer from './Event_cardContainer.js';
 import { useState, useEffect } from 'react';
 import Footer from './Footer.js';
 
+const DOMAIN = process.env.REACT_APP_DOMAIN;
+
 async function getUser() {
   const token = localStorage.getItem('token');
-  const response = await fetch('http://localhost:3000/profile', {
+  const response = await fetch(DOMAIN + 'profile', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -16,7 +18,7 @@ async function getUser() {
 
   if (response.status === 200) {
     const data = await response.json();
-    console.log(data); 
+    console.log(data);
     return data;
   } else {
     return null;
@@ -35,10 +37,10 @@ function Events() {
 
   return (
     <>
-      <Navbar data={data}/>
-      <Event_Image/>
-      <Event_cardContainer/> 
-      <Footer/>
+      <Navbar data={data} />
+      <Event_Image />
+      <Event_cardContainer />
+      <Footer />
     </>
   );
 }

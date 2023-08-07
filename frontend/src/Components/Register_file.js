@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Register_file.css';
 
+const DOMAIN = process.env.REACT_APP_DOMAIN;
+
 function RegistrationForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -40,7 +42,7 @@ function RegistrationForm() {
     console.log('Password:', password);
     // Perform registration logic here
 
-    fetch('http://localhost:3000/register', {
+    fetch(DOMAIN + 'register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

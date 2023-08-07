@@ -3,6 +3,8 @@ import p5 from 'p5';
 import Card from './Cards';
 import './Container.css';
 
+const DOMAIN = process.env.REACT_APP_DOMAIN;
+
 function CardContainer() {
   const [data, setData] = useState([]);
   const canvasRef = useRef();
@@ -79,11 +81,8 @@ function CardContainer() {
   }, []);
 
   useEffect(() => {
-    fetch('http://localhost:3000/packages', {
+    fetch(DOMAIN + 'packages', {
       method: 'GET',
-      headers: {
-        'Access-Control-Allow-Origin': 'http://localhost:3001'
-      }
     })
       .then(response => response.json())
       .then(data => {

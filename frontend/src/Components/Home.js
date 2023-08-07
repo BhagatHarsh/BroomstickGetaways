@@ -4,10 +4,12 @@ import CardContainer from "./CardContainer.js";
 import React, { useState, useEffect } from "react";
 import Footer from "./Footer.js";
 import ReviewShowCard from "./ReviewShowCard.js";
+const DOMAIN = process.env.REACT_APP_DOMAIN;
+console.log("DOMAIN: " + DOMAIN);
 
 async function getUser() {
   const token = localStorage.getItem("token");
-  const response = await fetch("http://localhost:3000/profile", {
+  const response = await fetch(DOMAIN + "profile", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -25,7 +27,7 @@ async function getUser() {
 }
 
 async function getReviews() {
-  const response = await fetch("http://localhost:3000/reviews", {
+  const response = await fetch( DOMAIN + "reviews", {
     method: "GET",
   });
 

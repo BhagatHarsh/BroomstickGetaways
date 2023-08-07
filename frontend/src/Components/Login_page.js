@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Login_Page.css';
 
+const DOMAIN = process.env.REACT_APP_DOMAIN;
+
 function Login_Page() {
     const [email, setEmail] = useState(''); 
     const [password, setPassword] = useState('');
@@ -28,7 +30,7 @@ function Login_Page() {
       console.log('Email:', email);
       console.log('Password:', password);
 
-      fetch('http://localhost:3000/login', {
+      fetch( DOMAIN + 'login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

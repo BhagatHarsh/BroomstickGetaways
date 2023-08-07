@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import Card from './Cards';
 import './Event_Card.css';
 
+const DOMAIN = process.env.REACT_APP_DOMAIN;
+
 function CardContainer() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/packages', {
+    fetch(DOMAIN + 'packages', {
       method: 'GET'
     })
       .then(response => response.json())
