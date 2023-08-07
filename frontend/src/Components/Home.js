@@ -60,10 +60,22 @@ function Home() {
     <>
       <Navbar data={data} />
       <FrontImage />
+      <div>
       <CardContainer />
-      {review.map((rev) => (
-        <ReviewShowCard review={rev} />
-      ))}
+      </div>
+      <div style={{backgroundColor: 'white', padding: '10px'}}>
+      <h2 style={{ color: '#008000', fontSize: '24px', backgroundColor: 'white', textAlign: 'center', padding: '10px', borderRadius: '5px', fontWeight: 'bold' }}>RECENT REVIEWS</h2>
+<div style={{ overflowY: 'auto', maxHeight: '500px', backgroundColor: 'white' }}>
+  {review.map((rev) => (
+    <ReviewShowCard review={rev} />
+  ))}
+</div>
+
+</div>
+
+
+
+
 
       <Footer />
     </>

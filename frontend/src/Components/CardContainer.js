@@ -97,14 +97,18 @@ function CardContainer() {
 
   return (
     
+      <div><h2 style={{ color: '#008000', fontSize: '24px', textAlign: 'center', padding: '10px', borderRadius: '5px', fontWeight: 'bold' }}>HIGHLIGHTED EVENTS</h2>
     <div className="CardContainer" style={{ overflowX: 'auto' }}>
-      <div ref={canvasRef}></div>
       
+      <div ref={canvasRef}></div>
       <div className="CardContainer__inner" style={{ position: 'relative', zIndex: '1' }}>
+        
+      
         {limitedData.map(item => (
           <Card item={item} key={item._id} />
         ))}
       </div>
+    </div>
     </div>
   );
 }
