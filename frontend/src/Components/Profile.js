@@ -60,6 +60,14 @@ function Profile() {
   }
 
   console.log(bookings);
+  const headingStyles = {
+    textAlign: 'center',
+    color: 'green',
+    fontSize: '32px',
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+    marginBottom: '20px'
+  };
   return (
     <>
       <Navbar data={data} />
@@ -71,7 +79,12 @@ function Profile() {
     <h6 className="card-subtitle mb-2 text-muted" style={{ color: 'gray', fontSize: '18px' }}>{data ? data.email : 'Loading...'}</h6>
   </div>
 </div>
-      <ProfileCard/>
+<div>
+      <h1 style={headingStyles}>Booked Packages</h1>
+      {bookings.map((data) => (
+        <ProfileCard Data={data} />
+      ))}
+    </div>
       <Footer />
     </>
   );
