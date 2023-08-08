@@ -24,8 +24,8 @@ async function getReviews(req, res) {
         const reviews = await Review.find({})
             .populate('user', 'name')
             .populate('package', 'name')
-            .sort({ createdAt: -1 }); // Sort by createdAt in descending order
-        console.log(reviews);
+            .sort({ createdAt: -1 }) // Sort by createdAt in descending order
+            .limit(8); // Limit the number of reviews to 8
         res.json(reviews);
     } catch (error) {
         res.status(500).send("Dementors on the loose! Error: " + error.message);
