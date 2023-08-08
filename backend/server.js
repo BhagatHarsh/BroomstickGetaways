@@ -47,6 +47,7 @@ app.post('/review', verifyToken, reviewController.createReview);
 
 // Booking route
 app.post('/book', verifyToken, bookingController.bookPackage);
+app.post('/booked', verifyToken, bookingController.getBookings)
 
 // Admin routes
 app.post('/admin/create', generateAdminToken);

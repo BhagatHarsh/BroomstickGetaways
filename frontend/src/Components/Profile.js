@@ -24,13 +24,42 @@ async function getUser() {
   }
 }
 
+
+async function getBookings() {
+  const token = localStorage.getItem('token');
+  const response = await fetch(DOMAIN + 'booked', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+  });
+
+  if (response.status === 200) {
+    const data = await response.json();
+    return data;
+  } else {
+    return null;
+  }
+}
+
 function Profile() {
   const [data, setData] = useState(null);
+  const [bookings, setBookings] = useState(null);
 
   useEffect(() => {
     getUser().then((userData) => setData(userData));
   }, []);
 
+  useEffect(() => {
+    getBookings().then((bookingData) => setBookings(bookingData));
+  }, []);
+
+  if(bookings === null || data === null) {
+    return <div>Loading...</div>
+  }
+
+  console.log(bookings);
   return (
     <>
       <Navbar data={data} />
