@@ -14,15 +14,18 @@ async function createReview(req, res) {
         res.status(200).json({});
     } catch (error) {
         console.error(error); // Log the error object to the console
-        res.status(500).send("Dementors on the loose! Error: "+ error.message);
+        res.status(500).send("Dementors on the loose! Error: " + error.message);
     }
 }
 
 async function getReviews(req, res) {
-    console.log("getReviews")
+    console.log("getReviews");
     try {
-        const reviews = await Review.find({}).populate('user', 'name').populate('package', 'name');
-        // console.log(reviews);
+        const reviews = await Review.find({})
+            .populate('user', 'name')
+            .populate('package', 'name')
+            .sort({ createdAt: -1 }); // Sort by createdAt in descending order
+        console.log(reviews);
         res.json(reviews);
     } catch (error) {
         res.status(500).send("Dementors on the loose! Error: " + error.message);
