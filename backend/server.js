@@ -56,6 +56,9 @@ app.post('/admin/package', verifyAdminToken, adminController.createPackage);
 app.put('/admin/package/:id', verifyAdminToken, adminController.updatePackage);
 app.delete('/admin/package/:id', verifyAdminToken, adminController.deletePackage); 
 
-
+//general route
+app.get('*', (req, res) => {
+    res.send('Welcome to the backend server of Travel Fantasy')
+});
 // Start the server at port 3000
 app.listen(PORT, () => console.log(`Server started at port ${PORT}`));
