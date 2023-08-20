@@ -61,4 +61,6 @@ app.get('*', (req, res) => {
     res.send('Welcome to the backend server of Travel Fantasy')
 });
 // Start the server at port 3000
-app.listen(PORT, '0.0.0.0',() => console.log(`Server started at port ${PORT}`));
+// app.listen(PORT, '0.0.0.0',() => console.log(`Server started at port ${PORT}`));
+
+module.exports = app;
